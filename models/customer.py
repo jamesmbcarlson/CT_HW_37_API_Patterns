@@ -1,5 +1,6 @@
 from database import db, Base
 from sqlalchemy.orm import Mapped, mapped_column
+from typing import List
 
 # from models.order import Order
 
@@ -11,4 +12,4 @@ class Customer(Base):
     phone: Mapped[str] = mapped_column(db.String(20), nullable=False)
 
     # One-to-Many Relationship with Orders
-    orders: Mapped[list['Order']] = db.relationship(back_populates='customer')
+    orders: Mapped[List['Order']] = db.relationship(back_populates='customer')

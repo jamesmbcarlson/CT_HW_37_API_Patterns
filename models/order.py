@@ -12,8 +12,6 @@ class Order(Base):
     quantity: Mapped[int] = mapped_column(nullable=False)
     total_price: Mapped[float] = mapped_column(db.Float, nullable=False)
 
-    # Many-to-One Relationship with Customer
+    # Many-to-One Relationship with Customers, Products
     customer: Mapped['Customer'] = db.relationship(back_populates='orders')
-
-    # Many-to-Many Relationship with Products
-    products: Mapped[list['Product']] = db.relationship(back_populates='orders')
+    product: Mapped['Product'] = db.relationship(back_populates='orders')

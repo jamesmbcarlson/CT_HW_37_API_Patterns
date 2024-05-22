@@ -1,5 +1,6 @@
 from database import db, Base
 from sqlalchemy.orm import Mapped, mapped_column
+from typing import List
 
 # from models.order import Order
 # from models.production import Production
@@ -10,9 +11,7 @@ class Product(Base):
     name: Mapped[str] = mapped_column(db.String(100), nullable=False)
     price: Mapped[float] = mapped_column(nullable=False)
 
-    # Many-to-Many Relationship with Order
-    orders: Mapped[list['Order']] = db.relationship(back_populates='products')
-
-    # One-to-Many Relationship with Production
-    production: Mapped[list['Production']] = db.relationship(back_populates='product')
+    # One-to-Many Relationship with Orders, Production
+    orders: Mapped[List['Order']] = db.relationship(back_populates='product')
+    production: Mapped[List['Production']] = db.relationship(back_populates='product')
     
